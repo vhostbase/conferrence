@@ -11,8 +11,8 @@ var fromYuid = urlParams.get('fromYuid');
 var yuid = urlParams.get('toYuid');
 console.log(yuid);
 var config = {
-	//wssHost: 'wss://websvrapp.herokuapp.com/?yuid='+fromYuid
-	wssHost: 'ws://localhost:61666?yuid='+fromYuid
+	wssHost: 'wss://websvrapp.herokuapp.com/?yuid='+fromYuid
+	//wssHost: 'ws://localhost:61666?yuid='+fromYuid
 	//wssHost: 'wss://vchat-simplevideochat.apps.us-east-1.starter.openshift-online.com?yuid='+fromYuid
   //wssHost: 'wss://wotpal.club'
   // wssHost: 'wss://example.com/myWebSocket'
