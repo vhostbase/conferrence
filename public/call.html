@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="webrtc.js"></script>
+    <title>Tharak-Chat</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+  </head>  
+  <body>
+	<div class="header">
+	  <h1>Consulting Center</h1>
+	</div>
+
+	<div class="row">
+	  <div class="col-9 col-s-12">
+		<video id="remoteVideo" autoplay controls style="height:50%;">		
+		  Your browser does not support HTML5 video.
+		</video>
+		
+	  </div>
+
+	  <div class="col-3 col-s-3">
+			<video id="localVideo" autoplay controls>			
+			  Your browser does not support HTML5 video.
+			</video> 
+			<div>				
+				<input id="videoCallButton" type="button" disabled value="Join"/>
+				<input id="endCallButton" type="button" disabled value="End"/>
+				<span id="joiner">Not Yet Joined.</span>
+			</div>
+	  </div>
+	</div>
+	
+	<div class="footer">
+	  <p>Consulting Center.</p>
+	</div>
+	<script>window.addEventListener("load", pageReady);</script>
+  </body>
+</html>
