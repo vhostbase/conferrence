@@ -20,8 +20,8 @@ if(role && role !== null)
 	meetingInfo += '&role='+role;
 
 var config = {
-	//wssHost: 'wss://websvrapp.herokuapp.com/?yuid='+chatroomID
-	wssHost: 'ws://localhost:8004?'+meetingInfo
+	wssHost: 'wss://websvrapp.herokuapp.com/?'+meetingInfo
+	//wssHost: 'ws://localhost:8004?'+meetingInfo
 	//wssHost: 'wss://vchat-simplevideochat.apps.us-east-1.starter.openshift-online.com?yuid='+fromYuid
   //wssHost: 'wss://wotpal.club'
   // wssHost: 'wss://example.com/myWebSocket'
