@@ -20,8 +20,8 @@ if(role && role !== null)
 	meetingInfo += '&role='+role;
 
 var config = {
-	wssHost: 'wss://websvrapp.herokuapp.com/?'+meetingInfo
-	//wssHost: 'ws://localhost:8004?'+meetingInfo
+	wssHost: 'wss://websvrapp.herokuapp.com?'+meetingInfo
+	//wssHost: 'ws://localhost:51391?'+meetingInfo
 	//wssHost: 'wss://vchat-simplevideochat.apps.us-east-1.starter.openshift-online.com?yuid='+fromYuid
   //wssHost: 'wss://wotpal.club'
   // wssHost: 'wss://example.com/myWebSocket'
@@ -162,7 +162,9 @@ function createAndSendOffer() {
       var off = new RTCSessionDescription(offer);
       peerConn.setLocalDescription(new RTCSessionDescription(off), 
         function() {
-          wsc.send(JSON.stringify({"sdp": off , "chatroom" : chatroomID}));
+		  waitForSocketConnection(wsc, function(){
+			wsc.send(JSON.stringify({"sdp": off , "chatroom" : chatroomID}));
+		  });
         }, 
         function(error) { console.log(error);}
       );
@@ -176,7 +178,9 @@ function createAndSendAnswer() {
     function (answer) {
       var ans = new RTCSessionDescription(answer);
       peerConn.setLocalDescription(ans, function() {
+		  waitForSocketConnection(wsc, function(){
           wsc.send(JSON.stringify({"sdp": ans, "chatroom" : chatroomID }));
+		  });
         }, 
         function (error) { console.log(error);}
       );
@@ -187,7 +191,9 @@ function createAndSendAnswer() {
 
 function onIceCandidateHandler(evt) {
   if (!evt || !evt.candidate) return;
+  waitForSocketConnection(wsc, function(){
   wsc.send(JSON.stringify({"candidate": evt.candidate, "chatroom" : chatroomID}));
+  });
 };
 
 function onAddStreamHandler(evt) {
