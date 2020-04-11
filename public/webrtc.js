@@ -9,7 +9,10 @@ window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogn
 var urlParams = new URLSearchParams(window.location.search);
 var fromYuid = urlParams.get('fromCustId');
 var yuid = urlParams.get('toCustId');
-console.log(yuid);
+var callHistory = urlParams.get('history');
+if(callHistory)
+	callHistory = callHistory.toUpperCase();
+console.log('callHistory '+callHistory);
 var config = {
 	wssHost: 'wss://websvrapp.herokuapp.com/?yuid='+fromYuid
 	//wssHost: 'ws://localhost:52455?yuid='+fromYuid
@@ -185,5 +188,9 @@ function endCall() {
     localVideo.src = "";
   }
   if (remoteVideo) remoteVideo.src = "";
-  location.reload();
+  if(callHistory === 'Y'){
+	  window.history.back();
+  }else{
+	location.reload();
+  }
 };
