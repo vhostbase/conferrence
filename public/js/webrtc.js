@@ -48,10 +48,15 @@ function pageReady() {
     endCallButton = document.getElementById("endCallButton");
     localVideo = document.getElementById('localVideo');
     remoteVideo = document.getElementById('remoteVideo');
-	videoRefreshButton = document.getElementById("videoRefreshButton");
-	videoRefreshButton.addEventListener("click", function(){
-		activateCall();
-	});
+	if(role && role.toLowerCase() === 'admin'){
+		videoRefreshButton.style.display="block";
+		videoRefreshButton = document.getElementById("videoRefreshButton");
+		videoRefreshButton.addEventListener("click", function(){
+			activateCall();
+		});
+	}else{
+		videoRefreshButton.style.display="none";
+	}
     //videoCallButton.removeAttribute("disabled");
     videoCallButton.addEventListener("click", function(){
 		/*setTimeout(function(){
