@@ -21,7 +21,7 @@ if(role && role !== null)
 
 var config = {
 	wssHost: 'wss://websvrapp.herokuapp.com?'+meetingInfo
-	//wssHost: 'ws://localhost:51391?'+meetingInfo
+	//wssHost: 'ws://localhost:49380?'+meetingInfo
 	//wssHost: 'wss://vchat-simplevideochat.apps.us-east-1.starter.openshift-online.com?yuid='+fromYuid
   //wssHost: 'wss://wotpal.club'
   // wssHost: 'wss://example.com/myWebSocket'
@@ -56,8 +56,10 @@ function pageReady() {
 			initiateCall();
 		}, 5);
     });
-    endCallButton.addEventListener("click", function (evt) {
-		wsc.send(JSON.stringify({"closeConnection": true , "chatroom" : chatroomID}));
+    endCallButton.addEventListener("click", function (evt) {		
+		waitForSocketConnection(wsc, function(){
+			wsc.send(JSON.stringify({"closeConnection": true , "chatroom" : chatroomID}));
+		});
     });
 	launchCaller();
   } else {
@@ -145,11 +147,11 @@ wsc.onmessage = function (evt) {
   if (!peerConn) answerCall();  
   if (signal.sdp) {
     console.log("Received SDP from remote peer.");
-    peerConn.setRemoteDescription(new RTCSessionDescription(signal.sdp));
+	peerConn.setRemoteDescription(new RTCSessionDescription(signal.sdp));
   }
   else if (signal.candidate) {
     console.log("Received ICECandidate from remote peer.");
-    peerConn.addIceCandidate(new RTCIceCandidate(signal.candidate));
+	peerConn.addIceCandidate(new RTCIceCandidate(signal.candidate));
   } else if ( signal.closeConnection){
     console.log("Received 'close call' signal from remote peer.");
     endCall();
