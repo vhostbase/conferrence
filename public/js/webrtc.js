@@ -62,6 +62,9 @@ function pageReady() {
 		});
     });
 	launchCaller();
+	setTimeout(function(){
+			activateCall();
+	}, 5);
   } else {
     alert("Sorry, your browser does not support WebRTC!")
   }
