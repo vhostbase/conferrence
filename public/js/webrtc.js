@@ -49,9 +49,9 @@ function pageReady() {
     remoteVideo = document.getElementById('remoteVideo');
     //videoCallButton.removeAttribute("disabled");
     videoCallButton.addEventListener("click", function(){
-		setTimeout(function(){
+		/*setTimeout(function(){
 			activateCall();
-		}, 5);
+		}, 5);*/
 		setTimeout(function(){
 			initiateCall();
 		}, 5);
