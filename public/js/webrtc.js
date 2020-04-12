@@ -48,9 +48,9 @@ function pageReady() {
     endCallButton = document.getElementById("endCallButton");
     localVideo = document.getElementById('localVideo');
     remoteVideo = document.getElementById('remoteVideo');
+	videoRefreshButton = document.getElementById("videoRefreshButton");
 	if(role && role.toLowerCase() === 'admin'){
-		videoRefreshButton.style.display="block";
-		videoRefreshButton = document.getElementById("videoRefreshButton");
+		videoRefreshButton.style.display="block";		
 		videoRefreshButton.addEventListener("click", function(){
 			activateCall();
 		});
