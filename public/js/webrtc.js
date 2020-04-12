@@ -152,8 +152,9 @@ wsc.onmessage = function (evt) {
   else if (signal.candidate) {
     console.log("Received ICECandidate from remote peer.");
 	setTimeout(function(){
+		videoCallButton.setAttribute("disabled", true);
 		peerConn.addIceCandidate(new RTCIceCandidate(signal.candidate));
-	}, 5);
+	}, 25);
   } else if ( signal.closeConnection){
     console.log("Received 'close call' signal from remote peer.");
     endCall();
