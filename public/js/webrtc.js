@@ -31,6 +31,7 @@ var localVideoElem = null,
   remoteVideoElem = null, 
   localVideoStream = null,
   videoCallButton = null,
+  videoRefreshButton = null,
   pingTimer,
   endCallButton = null;
 	var peerConn = null,
@@ -47,6 +48,10 @@ function pageReady() {
     endCallButton = document.getElementById("endCallButton");
     localVideo = document.getElementById('localVideo');
     remoteVideo = document.getElementById('remoteVideo');
+	videoRefreshButton = document.getElementById("videoRefreshButton");
+	videoRefreshButton.addEventListener("click", function(){
+		activateCall();
+	});
     //videoCallButton.removeAttribute("disabled");
     videoCallButton.addEventListener("click", function(){
 		/*setTimeout(function(){
@@ -62,9 +67,7 @@ function pageReady() {
 		});
     });
 	launchCaller();
-	setTimeout(function(){
-			activateCall();
-	}, 5);
+
   } else {
     alert("Sorry, your browser does not support WebRTC!")
   }
